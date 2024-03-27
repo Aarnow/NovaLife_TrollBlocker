@@ -12,6 +12,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using ModKit.Utils;
 
 namespace TrollBlocker
 {
@@ -173,7 +174,7 @@ namespace TrollBlocker
                         var prisoner = new TrollBlockerPlayer();
                         prisoner.PlayerId = target.id;
                         prisoner.IsActive = true;
-                        prisoner.CreatedAt = Utils.GetNumericalDateOfTheDay();
+                        prisoner.CreatedAt = DateUtils.GetNumericalDateOfTheDay();
                         if (await prisoner.Save())
                         {
                             var currentPlayer = Nova.server.Players.Where(p => p.account.id == prisoner.PlayerId).FirstOrDefault();
