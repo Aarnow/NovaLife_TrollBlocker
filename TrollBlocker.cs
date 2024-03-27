@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using ModKit.Utils;
+using AAMenu;
 
 namespace TrollBlocker
 {
@@ -41,6 +42,17 @@ namespace TrollBlocker
                (player, arg) => {
                    JailConfig = LoadConfigFile(ConfigJailFilePath);
                }).Register();
+
+            new SChatCommand("/debugboxeopen",
+              "mise à jour avec le fichier config",
+              "/debugboxe",
+              (player, arg) => {
+                  var obj = Nova.a.areas[0].instance.objects.Where(o => o.Value.objectId == 1352);
+                  foreach (var o in obj)
+                  {
+                      var d = JsonConvert.DeserializeObject(o.Value.data);
+                  }
+              }).Register();
         }
 
         public async override void OnPluginInit()
@@ -120,7 +132,7 @@ namespace TrollBlocker
 
             panel.NextButton("Prisonniers", () => TrollBlockerPlayerPanel(player));
             panel.NextButton("Cellules", () => TrollBlockerJailPanel(player));
-            panel.PreviousButton();
+            panel.AddButton("Retour", ui => AAMenu.AAMenu.menu.AdminPanel(player, AAMenu.AAMenu.menu.AdminTabLines));
             panel.CloseButton();
 
             panel.Display();
