@@ -42,38 +42,6 @@ namespace TrollBlocker
                (player, arg) => {
                    JailConfig = LoadConfigFile(ConfigJailFilePath);
                }).Register();
-
-            new SChatCommand("/boxeopen",
-              "boxeopen",
-              "/boxeopen",
-              (player, arg) => {
-                  if (player.IsAdmin)
-                  {
-                      uint areaId = player.setup.areaId;
-                      var objectsList = Nova.a.areas[areaId].instance.objects.Where(o => o.Value.objectId == 1352).ToList();
-                      foreach (var o in objectsList)
-                      {
-                          o.Value.data = "{\r\n\"actions\":[\r\n{\r\n\"actionId\":0,\r\n\"isOn\":false,\r\n\"time\": 0\r\n}\r\n ],\r\n\"lastActionId\":0,\r\n\"timeIncrement\": 0\r\n}";
-                          NetworkAreaManager.instance.RpcSetObject((int)areaId, o.Key, o.Value, false);
-                      }
-                  }
-              }).Register();
-
-            new SChatCommand("/boxeclose",
-              "boxeclose",
-              "/boxeclose",
-              (player, arg) => {
-                  if (player.IsAdmin)
-                  {
-                      uint areaId = player.setup.areaId;
-                      var objectsList = Nova.a.areas[areaId].instance.objects.Where(o => o.Value.objectId == 1352).ToList();
-                      foreach (var o in objectsList)
-                      {
-                          o.Value.data = "{\r\n\"actions\":[\r\n{\r\n\"actionId\":0,\r\n\"isOn\":true,\r\n\"time\": 0\r\n}\r\n ],\r\n\"lastActionId\":0,\r\n\"timeIncrement\": 0\r\n}";
-                          NetworkAreaManager.instance.RpcSetObject((int)areaId, o.Key, o.Value, false);
-                      }
-                  }
-              }).Register();
         }
 
         public async override void OnPluginInit()
