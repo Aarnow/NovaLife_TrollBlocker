@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using ModKit.Utils;
-using AAMenu;
+using Life.AreaSystem;
 
 namespace TrollBlocker
 {
@@ -43,14 +43,35 @@ namespace TrollBlocker
                    JailConfig = LoadConfigFile(ConfigJailFilePath);
                }).Register();
 
-            new SChatCommand("/debugboxeopen",
-              "mise à jour avec le fichier config",
-              "/debugboxe",
+            new SChatCommand("/boxeopen",
+              "boxeopen",
+              "/boxeopen",
               (player, arg) => {
-                  var obj = Nova.a.areas[0].instance.objects.Where(o => o.Value.objectId == 1352);
-                  foreach (var o in obj)
+                  if (player.IsAdmin)
                   {
-                      var d = JsonConvert.DeserializeObject(o.Value.data);
+                      uint areaId = player.setup.areaId;
+                      var objectsList = Nova.a.areas[areaId].instance.objects.Where(o => o.Value.objectId == 1352).ToList();
+                      foreach (var o in objectsList)
+                      {
+                          o.Value.data = "{\r\n\"actions\":[\r\n{\r\n\"actionId\":0,\r\n\"isOn\":false,\r\n\"time\": 0\r\n}\r\n ],\r\n\"lastActionId\":0,\r\n\"timeIncrement\": 0\r\n}";
+                          NetworkAreaManager.instance.RpcSetObject((int)areaId, o.Key, o.Value, false);
+                      }
+                  }
+              }).Register();
+
+            new SChatCommand("/boxeclose",
+              "boxeclose",
+              "/boxeclose",
+              (player, arg) => {
+                  if (player.IsAdmin)
+                  {
+                      uint areaId = player.setup.areaId;
+                      var objectsList = Nova.a.areas[areaId].instance.objects.Where(o => o.Value.objectId == 1352).ToList();
+                      foreach (var o in objectsList)
+                      {
+                          o.Value.data = "{\r\n\"actions\":[\r\n{\r\n\"actionId\":0,\r\n\"isOn\":true,\r\n\"time\": 0\r\n}\r\n ],\r\n\"lastActionId\":0,\r\n\"timeIncrement\": 0\r\n}";
+                          NetworkAreaManager.instance.RpcSetObject((int)areaId, o.Key, o.Value, false);
+                      }
                   }
               }).Register();
         }

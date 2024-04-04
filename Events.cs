@@ -1,10 +1,8 @@
 ﻿using Life;
 using Life.Network;
 using Mirror;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TrollBlocker.Entities;
 
 namespace TrollBlocker
