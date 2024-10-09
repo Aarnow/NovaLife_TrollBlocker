@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AAMenu">
-      <HintPath>..\AAMenu\bin\Debug\AAMenu.dll</HintPath>
+    <Reference Include="AAMenu, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\AAMenu\bin\Debug\Confused\AAMenu.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>E:\SteamLibrary\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -43,8 +44,9 @@
     <Reference Include="Mirror">
       <HintPath>E:\SteamLibrary\steamapps\common\Nova-Life\Nova-Life_Data\Managed\Mirror.dll</HintPath>
     </Reference>
-    <Reference Include="ModKit">
-      <HintPath>..\ModKit\ModKit\bin\Debug\Confused\ModKit.dll</HintPath>
+    <Reference Include="ModKit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ModKit\ModKit\bin\Debug\Confused\ModKit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>

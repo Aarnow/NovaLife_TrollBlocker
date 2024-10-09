@@ -32,7 +32,7 @@ namespace TrollBlocker
 
         public TrollBlocker(IGameAPI api) : base(api)
         {
-            PluginInformations = new PluginInformations(AssemblyHelper.GetName(), "1.0.0", "Aarnow");
+            PluginInformations = new PluginInformations(AssemblyHelper.GetName(), "1.0.1", "Aarnow");
             events = new Events(api);
             rand = new System.Random();
 
@@ -121,7 +121,7 @@ namespace TrollBlocker
 
             panel.NextButton("Prisonniers", () => TrollBlockerPlayerPanel(player));
             panel.NextButton("Cellules", () => TrollBlockerJailPanel(player));
-            panel.AddButton("Retour", ui => AAMenu.AAMenu.menu.AdminPanel(player, AAMenu.AAMenu.menu.AdminTabLines));
+            panel.AddButton("Retour", ui => AAMenu.AAMenu.menu.AdminPanel(player));
             panel.CloseButton();
 
             panel.Display();
